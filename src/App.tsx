@@ -4,7 +4,6 @@ import { router } from "./Router";
 import { useEffect, useReducer } from "react";
 import { CartContext } from "./contexts/CartContext";
 import { CartReducer } from "./reducers/CartReducer";
-import { Cart } from "./models/Cart";
 import {
   IProductsActionType,
   ProductsReducer,

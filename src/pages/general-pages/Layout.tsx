@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import {  useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
 
@@ -12,6 +12,37 @@ export const Layout = () => {
     (accumulator, currentValue) => accumulator + currentValue,
     initialValue
   );
+
+  // TESTING STRIPE API
+
+
+  // const handleSubmit = async () => {
+    
+  //   console.log("asd");
+
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost:3000/create-checkout-session-embedded",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({}), //????????
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+      
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+
+
+  // TESTING STRIPE API
+
   return (
     <>
       <div className="flex flex-col min-h-screen ">
@@ -29,6 +60,9 @@ export const Layout = () => {
               </li>
               <li>
                 <NavLink to={"/cart"}>Cart {totalAmountInCart}</NavLink>
+              </li>
+              <li>
+                  <NavLink to={"/checkout"}><button>Confirm details (send details to api and create payment url)</button></NavLink>
               </li>
             </ul>
           </nav>

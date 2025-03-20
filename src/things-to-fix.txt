@@ -9,7 +9,7 @@ product be created without an image. If created without image, have something th
 
 
 
-
+password can be empty in API
 
 endpoints in the services files can be better
 
