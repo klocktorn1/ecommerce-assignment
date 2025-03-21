@@ -18,7 +18,8 @@ export const ProductsReducer = (
   action: IProductsAction
 ): IProduct[] => {
   switch (action.type) {
-    case IProductsActionType.FETCHED: {      
+    case IProductsActionType.FETCHED: {
+      localStorage.setItem("products", JSON.stringify(productsState));
       return JSON.parse(action.payload!);
     }
     case IProductsActionType.CREATED: {

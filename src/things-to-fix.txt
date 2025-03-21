@@ -18,3 +18,5 @@ Only render customer table if there is a customer in the customer array. Now it 
 styling needs to be fixed overall
 
 background is only as big as default screen height. 
+
+axios request for stripe api

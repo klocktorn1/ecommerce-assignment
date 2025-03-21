@@ -12,6 +12,7 @@ export enum IOrdersActionType {
   DELETED,
   UPDATED_QUANTITY,
   DELETED_ORDER_ITEM,
+  CREATED
 }
 
 export const OrdersReducer = (
@@ -35,6 +36,9 @@ export const OrdersReducer = (
       );
       localStorage.setItem("orders", JSON.stringify(updatedOrders));
       return updatedOrders;
+    }
+    case IOrdersActionType.CREATED: {
+      
     }
   }
   return ordersState;

@@ -30,14 +30,7 @@ function App() {
     return cachedProducts ? JSON.parse(cachedProducts) : [];
   });
 
-  const [customers, customersDispatch] = useReducer(
-    CustomersReducer,
-    [],
-    () => {
-      const cachedCustomers = localStorage.getItem("customers");
-      return cachedCustomers ? JSON.parse(cachedCustomers) : [];
-    }
-  );
+  const [customers, customersDispatch] = useReducer(CustomersReducer, []);
 
   const [orders, ordersDispatch] = useReducer(OrdersReducer, [], () => {
     const cachedOrders = localStorage.getItem("orders");

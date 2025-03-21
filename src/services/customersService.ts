@@ -15,6 +15,12 @@ export const getCustomerById = async (id: string) => {
   );
   return data;
 };
+export const getCustomerByEmail = async (email: string) => {
+  const response: ICustomer = await handleRequest(
+    axios.get(`http://localhost:3000/customers/email/${email}`)
+  );
+  return response;
+};
 
 export const deleteCustomer = async (id: number) => {
   await handleRequest(axios.delete(`http://localhost:3000/customers/${id}`));
@@ -30,5 +36,8 @@ export const updateCustomer = async (
 };
 
 export const createCustomer = async (payload: IUpdateAndCreateCustomer) => {
-  await handleRequest(axios.post(`http://localhost:3000/customers`, payload));
+  const response = await handleRequest(
+    axios.post(`http://localhost:3000/customers`, payload)
+  );
+  return response;
 };

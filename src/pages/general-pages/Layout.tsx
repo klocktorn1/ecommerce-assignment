@@ -13,36 +13,6 @@ export const Layout = () => {
     initialValue
   );
 
-  // TESTING STRIPE API
-
-
-  // const handleSubmit = async () => {
-    
-  //   console.log("asd");
-
-  //   try {
-  //     const response = await fetch(
-  //       "http://localhost:3000/create-checkout-session-embedded",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({}), //????????
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-      
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-
-
-  // TESTING STRIPE API
-
   return (
     <>
       <div className="flex flex-col min-h-screen ">

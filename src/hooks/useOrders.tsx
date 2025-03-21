@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { OrdersContext } from "../contexts/OrdersContext";
 import {
+  createOrder,
   deleteOrder,
   deleteOrderItem,
   getAllOrders,
@@ -10,6 +11,7 @@ import {
 } from "../services/ordersService";
 import { IOrdersActionType } from "../reducers/OrdersReducer";
 import {
+  ICreateOrder,
   IOrderById,
   IUpdateOrder,
   IUpdateOrderItemQuantity,
@@ -54,6 +56,20 @@ export const useOrders = () => {
       setIsLoading(false);
     }
   };
+
+  const createOrderHandler = async (payload: ICreateOrder) => {
+    setIsLoading(true)
+    try {
+      await createOrder(payload)
+      ordersDispatch({
+        type: IOrdersActionType.CREATED,
+        payload: JSON.stringify(payload)
+      })
+      
+    } catch (error) {
+      
+    }
+  }
 
   const removeOrderHandler = async (id: number) => {
     setIsLoading(true);
@@ -132,6 +148,7 @@ export const useOrders = () => {
     getOrdersHandler,
     removeOrderHandler,
     updateOrderHandler,
+    createOrderHandler,
     updateOrderItemQuantityHandler,
   };
 };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { handleRequest } from "./baseService";
 import {
+  ICreateOrder,
   IOrder,
   IOrderById,
   IUpdateOrder,
@@ -23,6 +24,11 @@ export const getOrderById = async (id: string) => {
 
 export const deleteOrder = async (id: number) => {
   await handleRequest(axios.delete(`http://localhost:3000/orders/${id}`));
+};
+export const createOrder = async (payload: ICreateOrder) => {
+  console.log("You did it !");
+  
+  await handleRequest(axios.post(`http://localhost:3000/orders`)), payload;
 };
 
 export const updateOrder = async (id: number, payload: IUpdateOrder) => {

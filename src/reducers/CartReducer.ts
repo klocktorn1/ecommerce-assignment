@@ -19,6 +19,7 @@ export const CartReducer = (
   cartState: Cart[],
   action: ICartAction
 ): Cart[] => {
+  
   switch (action.type) {
     case ICartActionType.ADDED: {
       const p: IProduct = JSON.parse(action.payload);

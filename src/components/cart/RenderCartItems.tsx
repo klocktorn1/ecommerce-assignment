@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { useCart } from "../../hooks/useCart";
+import { RenderShippingInformationForm } from "../checkout/RenderShippingInformationForm";
 
 export const RenderCartItems = () => {
   const { cart } = useContext(CartContext);
@@ -38,6 +39,7 @@ export const RenderCartItems = () => {
           </button>
         </div>
       ))}
+      <RenderShippingInformationForm></RenderShippingInformationForm>
     </>
   );
 };

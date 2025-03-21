@@ -86,7 +86,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/checkout/return",
+    path: "/order-confirmation",
     element: <OrderConfirmation></OrderConfirmation>
   }
 

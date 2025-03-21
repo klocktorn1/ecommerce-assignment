@@ -3,6 +3,7 @@ import {
   createCustomer,
   deleteCustomer,
   getAllCustomers,
+  getCustomerByEmail,
   getCustomerById,
   updateCustomer,
 } from "../services/customersService";
@@ -42,16 +43,16 @@ export const useCustomers = () => {
     }
   };
 
-  const fetchCachedProductById = (id: string) => {
-    const cachedProduct = customers.find((p) => p.id === +id);
-    if (!cachedProduct) return null;
-    setCustomer(cachedProduct);
-    return cachedProduct;
+  const fetchCachedCustomerById = (id: string) => {
+    const cachedCustomer = customers.find((c) => c.id === +id);
+    if (!cachedCustomer) return null;
+    setCustomer(cachedCustomer);
+    return cachedCustomer;
   };
 
   const getCustomerByIdHandler = async (id: string) => {
-    const cachedProduct = fetchCachedProductById(id);
-    if (cachedProduct) return cachedProduct;
+    const cachedCustomer = fetchCachedCustomerById(id);
+    if (cachedCustomer) return cachedCustomer;
     setIsLoading(true);
     try {
       const data = await getCustomerById(id);
@@ -60,6 +61,20 @@ export const useCustomers = () => {
     } catch (error) {
       setError("Error fetching customer");
       throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getCustomerByEmailHandler = async (email: string) => {
+    setIsLoading(true);
+    try {
+      const data = await getCustomerByEmail(email);
+      setCustomer(data);
+      return data;
+    } catch (error) {
+      setError("Error fetching customer");
+      return null
     } finally {
       setIsLoading(false);
     }
@@ -101,14 +116,17 @@ export const useCustomers = () => {
   };
 
   const createCustomerHandler = async (payload: IUpdateAndCreateCustomer) => {
+    const alreadyCreatedCustomer = await getCustomerByEmailHandler(payload.email);
+    if (alreadyCreatedCustomer) return alreadyCreatedCustomer.id
     setIsLoading(true);
     try {
-      await createCustomer(payload);
-      
+      const response = await createCustomer(payload);
+
       customersDispatch({
         type: ICustomersActionType.CREATED,
         payload: JSON.stringify(payload),
       });
+      return response.id;
     } catch (error) {
       setError("Error creating customer" + error);
     } finally {
@@ -123,6 +141,7 @@ export const useCustomers = () => {
     error,
     getCustomersHandler,
     getCustomerByIdHandler,
+    getCustomerByEmailHandler,
     updateCustomerHandler,
     deleteCustomerHandler,
     createCustomerHandler,
