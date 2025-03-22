@@ -23,7 +23,6 @@ export const CustomersReducer = (
     }
     case ICustomersActionType.CREATED: {
       const updatedCustomers = [...customersState, JSON.parse(action.payload!)];
-      // localStorage.setItem("customers", JSON.stringify(updatedCustomers));
       return updatedCustomers;
     }
     case ICustomersActionType.UPDATED: {
@@ -31,13 +30,11 @@ export const CustomersReducer = (
       const updatedCustomers: ICustomer[] = customersState.map((p) =>
         p.id === customerId ? { ...p, ...JSON.parse(action.payload!) } : p
       );
-      // localStorage.setItem("customers", JSON.stringify(updatedCustomers));
       return updatedCustomers;
     }
     case ICustomersActionType.DELETED: {
       const customerId: number = action.id!;
       const updatedCustomer = customersState.filter((p) => p.id !== customerId)
-      // localStorage.setItem("customers", JSON.stringify(updatedCustomer));
       return updatedCustomer;
     }
   }

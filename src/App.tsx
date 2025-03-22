@@ -25,10 +25,15 @@ function App() {
     return cachedCart ? JSON.parse(cachedCart) : [];
   });
 
+  // try to figure out the flow of when stuff gets added to localstorage. 
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+
   const [products, productsDispatch] = useReducer(ProductsReducer, [], () => {
     const cachedProducts = localStorage.getItem("products");
     return cachedProducts ? JSON.parse(cachedProducts) : [];
   });
+  localStorage.setItem("products", JSON.stringify(products));
 
   const [customers, customersDispatch] = useReducer(CustomersReducer, []);
 

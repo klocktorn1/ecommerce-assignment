@@ -11,7 +11,7 @@ export enum ICartActionType {
   INCREASED,
   DECREASED,
   REMOVED,
-  SET_EMPTY
+  EMPTIED
 }
 
 
@@ -58,8 +58,8 @@ export const CartReducer = (
       const productId: number = +action.payload;
       return cartState.filter((ci) => ci.product.id !== productId);
     }
-    case ICartActionType.SET_EMPTY: {
-      return JSON.parse(action.payload);
+    case ICartActionType.EMPTIED: {
+      return cartState = [];
     }
   }
   return cartState

@@ -1,18 +1,20 @@
-import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout,
-} from "@stripe/react-stripe-js";
+import { RenderCartItems } from "../../components/cart/RenderCartItems";
+import { RenderShippingInformationForm } from "../../components/checkout/RenderShippingInformationForm";
 
-import { options, stripePromise } from "../../services/stripeService";
-
-function Checkout() {
+export const Checkout = () => {
   return (
-    <div id="checkout">
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-    </div>
+    <>
+      <div className="flex gap-5 justify-around">
+        <div>
+          <h1>Checkout</h1>
+          <RenderShippingInformationForm></RenderShippingInformationForm>
+        </div>
+  
+        <div>
+          <h1>Your cart:</h1>
+          <RenderCartItems></RenderCartItems>
+        </div>
+      </div>
+    </>
   );
-}
-
-export default Checkout;
+};

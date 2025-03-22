@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { IUpdateAndCreateCustomer } from "../../models/ICustomer";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useCustomers } from "../../hooks/useCustomers";
 import { CartContext } from "../../contexts/CartContext";
 import { ICreateOrder } from "../../models/IOrder";
@@ -8,7 +8,7 @@ import { useOrders } from "../../hooks/useOrders";
 
 export const RenderShippingInformationForm = () => {
   const { createCustomerHandler, error, isLoading } = useCustomers();
-  const {createOrderHandler} = useOrders()
+  const { createOrderHandler } = useOrders();
   const navigate = useNavigate();
 
   const [createdCustomer, setCreatedCustomer] =
@@ -18,14 +18,14 @@ export const RenderShippingInformationForm = () => {
     });
 
   const { cart } = useContext(CartContext);
-  console.log(cart);
 
   const [createdOrder, setCreatedOrder] = useState<ICreateOrder>();
 
-
   useEffect(() => {
-    createOrderHandler(createdOrder!)
-  }, [createdOrder])
+    if (createdOrder) {
+      createOrderHandler(createdOrder);
+    }
+  }, [createdOrder]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,7 +45,8 @@ export const RenderShippingInformationForm = () => {
 
     if (createdCustomer) {
       const customerId = await createCustomerHandler(createdCustomer);
-      console.log(customerId);
+      
+      
       setCreatedOrder({
         customer_id: customerId,
         payment_status: "unpaid",
@@ -61,9 +62,8 @@ export const RenderShippingInformationForm = () => {
         }),
       });
 
-      //   localStorage.clear()
+      navigate("/payment");
     }
-    navigate("/");
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -151,7 +151,7 @@ export const RenderShippingInformationForm = () => {
             type="text"
             onChange={handleChange}
           />
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit}>Proceed to payment</button>
         </form>
       </div>
     </>

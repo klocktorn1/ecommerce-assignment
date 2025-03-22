@@ -30,7 +30,6 @@ export const useCustomers = () => {
     setIsLoading(true);
     try {
       const data = await getAllCustomers();
-      localStorage.setItem("customers", JSON.stringify(data));
       customersDispatch({
         type: ICustomersActionType.FETCHED,
         payload: JSON.stringify(data),

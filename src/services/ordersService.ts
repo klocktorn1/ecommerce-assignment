@@ -27,8 +27,8 @@ export const deleteOrder = async (id: number) => {
 };
 export const createOrder = async (payload: ICreateOrder) => {
   console.log("You did it !");
-  
-  await handleRequest(axios.post(`http://localhost:3000/orders`)), payload;
+
+  await handleRequest(axios.post(`http://localhost:3000/orders`, payload));
 };
 
 export const updateOrder = async (id: number, payload: IUpdateOrder) => {
@@ -46,7 +46,5 @@ export const updateOrderItemQuantity = async (
   );
 };
 export const deleteOrderItem = async (id: number) => {
-  await handleRequest(
-    axios.delete(`http://localhost:3000/order-items/${id}`)
-  );
+  await handleRequest(axios.delete(`http://localhost:3000/order-items/${id}`));
 };

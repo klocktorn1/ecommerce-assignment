@@ -31,9 +31,6 @@ export const Layout = () => {
               <li>
                 <NavLink to={"/cart"}>Cart {totalAmountInCart}</NavLink>
               </li>
-              <li>
-                  <NavLink to={"/checkout"}><button>Confirm details (send details to api and create payment url)</button></NavLink>
-              </li>
             </ul>
           </nav>
         </header>

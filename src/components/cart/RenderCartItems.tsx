@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { useCart } from "../../hooks/useCart";
 import { RenderShippingInformationForm } from "../checkout/RenderShippingInformationForm";
+import { NavLink } from "react-router-dom";
 
 export const RenderCartItems = () => {
   const { cart } = useContext(CartContext);
@@ -39,7 +40,13 @@ export const RenderCartItems = () => {
           </button>
         </div>
       ))}
-      <RenderShippingInformationForm></RenderShippingInformationForm>
+      <li>
+        <NavLink to={"/checkout"}>
+          <button>
+            Proceed to checkout
+          </button>
+        </NavLink>
+      </li>
     </>
   );
 };

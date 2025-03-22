@@ -26,7 +26,6 @@ export const OrdersReducer = (
     case IOrdersActionType.DELETED: {
       const orderId: number = action.id!;
       const updatedOrder = ordersState.filter((o) => o.id !== orderId);
-      localStorage.setItem("orders", JSON.stringify(updatedOrder));
       return updatedOrder;
     }
     case IOrdersActionType.UPDATED: {
@@ -34,7 +33,6 @@ export const OrdersReducer = (
       const updatedOrders: IOrder[] = ordersState.map((o) =>
         o.id === orderId ? { ...o, ...JSON.parse(action.payload!) } : o
       );
-      localStorage.setItem("orders", JSON.stringify(updatedOrders));
       return updatedOrders;
     }
     case IOrdersActionType.CREATED: {

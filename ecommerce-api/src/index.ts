@@ -15,6 +15,7 @@ import productRouter from "./routes/products";
 import customerRouter from "./routes/customers";
 import orderRouter from "./routes/orders";
 import orderItemRouter from "./routes/orderItems";
+import { IStripePayment } from "./models/IStripePayment";
 app.use("/products", productRouter);
 app.use("/customers", customerRouter);
 app.use("/orders", orderRouter);
@@ -23,22 +24,38 @@ app.use("/order-items", orderItemRouter);
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 // This example sets up an endpoint using the Express framework.
 
+// CREATE post WITHOUT mysql database
+// app.post("/posts", (request: Request, response: Response) => {
+//   const { title, content, author } = request.body;
+//   console.log(`Recieved request to create post`);
+
+//   if (!title || !content || !author) {
+//     response.status(400).json({ message: "Required fields missing" });
+//   }
+
+//   posts.push(new Post(title, content, author));
+
+//   response.status(201).json({ message: "Post created" });
+// });
+
+[
+  {
+    price_data: {
+      currency: "sek",
+      product_data: [Object],
+      unit_amount: 123,
+    },
+    quantity: 2,
+  },
+];
+
 app.post(
   "/create-checkout-session-embedded",
   async (req: Request, res: Response) => {
+    const { line_items }: IStripePayment = req.body;
+    console.log(line_items);
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "T-shirt",
-            },
-            unit_amount: 2000,
-          },
-          quantity: 1,
-        },
-      ],
+      line_items: line_items,
       mode: "payment",
       ui_mode: "embedded",
       client_reference_id: "123",
@@ -55,16 +72,6 @@ app.post(
   }
 );
 
-
-
-
-
-
-
-
-
-
-
 // Match the raw body to content type application/json
 // If you are using Express v4 - v4.16 you need to use body-parser, not express, to retrieve the request body
 app.post("/webhook", (req: Request, res: Response) => {
@@ -73,16 +80,16 @@ app.post("/webhook", (req: Request, res: Response) => {
   // Handle the event
   switch (event.type) {
     case "checkout.session.completed":
-    const session = event.data.object
-    // update order with confirmed payment
-    // -- payment_status = paid
-    // -- payment_id = session.id
-    // -- payment status = "Recieved"
+      const session = event.data.object;
+      // update order with confirmed payment
+      // -- payment_status = paid
+      // -- payment_id = session.id
+      // -- payment status = "Recieved"
 
-    // Update product stock
+      // Update product stock
 
-    // Send confirmation email
-    console.log(session)
+      // Send confirmation email
+      console.log(session);
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
@@ -90,18 +97,6 @@ app.post("/webhook", (req: Request, res: Response) => {
   // Return a response to acknowledge receipt of the event
   res.json({ received: true });
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Attempt to connect to the database
 connectDB();

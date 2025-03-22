@@ -15,7 +15,8 @@ import { Cart } from "./pages/cart/Cart";
 import { HandleOrders } from "./pages/orders/Orders";
 import { OrderDetails } from "./pages/orders/OrderDetails";
 import { OrderConfirmation } from "./pages/checkout/OrderConfirmation";
-import Checkout from "./pages/checkout/Checkout"
+import {Checkout} from "./pages/checkout/Checkout"
+import Payment from "./pages/checkout/Payment";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -42,8 +43,16 @@ export const router = createBrowserRouter([
         element: <Cart></Cart>,
       },
       {
+        path: "/order-confirmation",
+        element: <OrderConfirmation></OrderConfirmation>
+      },
+      {
         path: "/checkout",
         element: <Checkout></Checkout>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
       },
     ],
   },
@@ -85,10 +94,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/order-confirmation",
-    element: <OrderConfirmation></OrderConfirmation>
-  }
+
 
 
 

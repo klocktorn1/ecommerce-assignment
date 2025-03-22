@@ -61,10 +61,10 @@ export const useOrders = () => {
     setIsLoading(true)
     try {
       await createOrder(payload)
-      ordersDispatch({
-        type: IOrdersActionType.CREATED,
-        payload: JSON.stringify(payload)
-      })
+      // ordersDispatch({
+      //   type: IOrdersActionType.CREATED,
+      //   payload: JSON.stringify(payload)
+      // })
       
     } catch (error) {
       
