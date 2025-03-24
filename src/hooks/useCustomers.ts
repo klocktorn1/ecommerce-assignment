@@ -120,14 +120,13 @@ export const useCustomers = () => {
     setIsLoading(true);
     try {
       const response = await createCustomer(payload);
-
       customersDispatch({
         type: ICustomersActionType.CREATED,
         payload: JSON.stringify(payload),
       });
       return response.id;
     } catch (error) {
-      setError("Error creating customer" + error);
+      console.log("asdasdasd");
     } finally {
       setIsLoading(false);
     }

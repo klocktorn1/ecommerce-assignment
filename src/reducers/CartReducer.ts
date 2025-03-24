@@ -11,15 +11,10 @@ export enum ICartActionType {
   INCREASED,
   DECREASED,
   REMOVED,
-  EMPTIED
+  EMPTIED,
 }
 
-
-export const CartReducer = (
-  cartState: Cart[],
-  action: ICartAction
-): Cart[] => {
-  
+export const CartReducer = (cartState: Cart[], action: ICartAction): Cart[] => {
   switch (action.type) {
     case ICartActionType.ADDED: {
       const p: IProduct = JSON.parse(action.payload);
@@ -56,11 +51,15 @@ export const CartReducer = (
     }
     case ICartActionType.REMOVED: {
       const productId: number = +action.payload;
-      return cartState.filter((ci) => ci.product.id !== productId);
+      const cartStateRemoved = cartState.filter(
+        (ci) => ci.product.id !== productId
+      );
+      console.log(cartStateRemoved);
+
+      return (cartState = cartStateRemoved);
     }
     case ICartActionType.EMPTIED: {
-      return cartState = [];
+      return (cartState = []);
     }
   }
-  return cartState
 };

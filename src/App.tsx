@@ -26,7 +26,6 @@ function App() {
   });
 
   // try to figure out the flow of when stuff gets added to localstorage. 
-  localStorage.setItem("cart", JSON.stringify(cart));
 
 
   const [products, productsDispatch] = useReducer(ProductsReducer, [], () => {
@@ -37,10 +36,7 @@ function App() {
 
   const [customers, customersDispatch] = useReducer(CustomersReducer, []);
 
-  const [orders, ordersDispatch] = useReducer(OrdersReducer, [], () => {
-    const cachedOrders = localStorage.getItem("orders");
-    return cachedOrders ? JSON.parse(cachedOrders) : [];
-  });
+  const [orders, ordersDispatch] = useReducer(OrdersReducer, []);
 
   useEffect(() => {
     const fetchAllProducts = async () => {

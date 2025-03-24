@@ -20,6 +20,7 @@ export const RenderProduct = ({ id }: IRenderProductProps) => {
       type: ICartActionType.ADDED,
       payload: JSON.stringify(product),
     });
+    
   };
 
   return (

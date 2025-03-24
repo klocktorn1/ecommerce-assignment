@@ -1,14 +1,11 @@
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IUpdateAndCreateCustomer } from "../../models/ICustomer";
 import { useNavigate } from "react-router-dom";
 import { useCustomers } from "../../hooks/useCustomers";
-import { CartContext } from "../../contexts/CartContext";
-import { ICreateOrder } from "../../models/IOrder";
-import { useOrders } from "../../hooks/useOrders";
+
 
 export const RenderShippingInformationForm = () => {
   const { createCustomerHandler, error, isLoading } = useCustomers();
-  const { createOrderHandler } = useOrders();
   const navigate = useNavigate();
 
   const [createdCustomer, setCreatedCustomer] =
@@ -17,26 +14,8 @@ export const RenderShippingInformationForm = () => {
       return cachedCustomer ? JSON.parse(cachedCustomer) : null;
     });
 
-  const { cart } = useContext(CartContext);
+    
 
-  const [createdOrder, setCreatedOrder] = useState<ICreateOrder>();
-  const [orderId, setOrderId] = useState<number>();
-
-  useEffect(() => {
-    const getOrderId = async () => {
-      if (createdOrder) {
-        const response = await createOrderHandler(createdOrder);
-        setOrderId(response.id);
-      }
-    };
-    getOrderId();
-  }, [createdOrder]);
-
-  useEffect(() => {
-    if (orderId) {
-      navigate(`/payment/${orderId}`);
-    }
-  }, [orderId]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -57,20 +36,7 @@ export const RenderShippingInformationForm = () => {
     if (createdCustomer) {
       const customerId = await createCustomerHandler(createdCustomer);
 
-      setCreatedOrder({
-        customer_id: customerId,
-        payment_status: "unpaid",
-        payment_id: null,
-        order_status: "pending",
-        order_items: cart.map((ci) => {
-          return {
-            product_id: ci.product.id,
-            product_name: ci.product.name,
-            quantity: ci.amount,
-            unit_price: ci.product.price,
-          };
-        }),
-      });
+      navigate(`/payment/${customerId}`);
     }
   };
 

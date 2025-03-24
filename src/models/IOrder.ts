@@ -26,10 +26,11 @@ export interface IOrderItem {
 }
 
 export interface IUpdateOrder {
-  customer_id: number;
-  total_price: number;
-  payment_status: string;
-  order_status: string;
+  customer_id?: number;
+  total_price?: number;
+  payment_id?: string;
+  payment_status?: string;
+  order_status?: string;
 }
 
 export interface IOrderById {
@@ -59,7 +60,7 @@ export interface IUpdateOrderItemQuantity {
 export interface ICreateOrder {
   customer_id: number;
   payment_status: string;
-  payment_id: number | null;
+  payment_id: string | null;
   order_status: string;
   order_items: {
     product_id: number;

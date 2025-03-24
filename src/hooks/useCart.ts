@@ -6,9 +6,11 @@ import { IProduct } from "../models/IProduct";
 export const useCart = () => {
   const { cart, cartDispatch } = useContext(CartContext);
 
-  // useEffect(() => {
-  //   localStorage.setItem("cart", JSON.stringify(cart));
-  // }, [cart]);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart);
+  }, [cart]);
+  
 
   const addToCartHandler = (product: IProduct) => {
     cartDispatch({
@@ -34,7 +36,7 @@ export const useCart = () => {
     cartDispatch({
       type: ICartActionType.REMOVED,
       payload: JSON.stringify(id),
-    });
+    });    
   };
 
   return {
