@@ -58,18 +58,12 @@ export const useOrders = () => {
   };
 
   const createOrderHandler = async (payload: ICreateOrder) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await createOrder(payload)
-      // ordersDispatch({
-      //   type: IOrdersActionType.CREATED,
-      //   payload: JSON.stringify(payload)
-      // })
-      
-    } catch (error) {
-      
-    }
-  }
+      const response = await createOrder(payload);      
+      return response;
+    } catch (error) {}
+  };
 
   const removeOrderHandler = async (id: number) => {
     setIsLoading(true);

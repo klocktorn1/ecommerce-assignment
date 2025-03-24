@@ -9,11 +9,14 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { IStripePayment } from "../../models/IStripePayment";
+import { useParams } from "react-router-dom";
 
 function Payment() {
+  const {id} = useParams()  
   const { cart } = useContext(CartContext);
 
   const payload: IStripePayment = {
+    client_reference_id: +id!,
     line_items: cart.map((ci) => ({
       price_data: {
         currency: "sek",
@@ -39,7 +42,8 @@ useEffect(() => {
         payload
       )
     );
-    console.log("asd");
+    console.log(response.session_id);
+    
 
     return response.clientSecret;
   };

@@ -15,7 +15,10 @@ interface ILineItem {
 
 export interface IStripePayment {
   line_items: ILineItem[];
+  client_reference_id: number
 }
+
+
 
 // export interface IStripePayment {
 //   line_items: [

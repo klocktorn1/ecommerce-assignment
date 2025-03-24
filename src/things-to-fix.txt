@@ -20,3 +20,5 @@ styling needs to be fixed overall
 background is only as big as default screen height. 
 
 axios request for stripe api
+
+remove created from ordersReducer

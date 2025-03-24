@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { useCart } from "../../hooks/useCart";
-import { RenderShippingInformationForm } from "../checkout/RenderShippingInformationForm";
 import { NavLink } from "react-router-dom";
+import { ICartActionType } from "../../reducers/CartReducer";
 
 export const RenderCartItems = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, cartDispatch } = useContext(CartContext);
   const { increaseHandler, decreaseHandler, removeHandler } = useCart();
 
   return (
@@ -42,11 +42,15 @@ export const RenderCartItems = () => {
       ))}
       <li>
         <NavLink to={"/checkout"}>
-          <button>
-            Proceed to checkout
-          </button>
+          <button>Proceed to checkout</button>
         </NavLink>
       </li>
+      <button onClick={() => {
+        cartDispatch({
+          type: ICartActionType.EMPTIED,
+          payload: ""
+        })
+      }}>Empty cart</button>
     </>
   );
 };

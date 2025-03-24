@@ -22,21 +22,6 @@ app.use("/orders", orderRouter);
 app.use("/order-items", orderItemRouter);
 
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-// This example sets up an endpoint using the Express framework.
-
-// CREATE post WITHOUT mysql database
-// app.post("/posts", (request: Request, response: Response) => {
-//   const { title, content, author } = request.body;
-//   console.log(`Recieved request to create post`);
-
-//   if (!title || !content || !author) {
-//     response.status(400).json({ message: "Required fields missing" });
-//   }
-
-//   posts.push(new Post(title, content, author));
-
-//   response.status(201).json({ message: "Post created" });
-// });
 
 [
   {
@@ -52,13 +37,13 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 app.post(
   "/create-checkout-session-embedded",
   async (req: Request, res: Response) => {
-    const { line_items }: IStripePayment = req.body;
-    console.log(line_items);
+    const { line_items, client_reference_id }: IStripePayment = req.body;
+    
     const session = await stripe.checkout.sessions.create({
       line_items: line_items,
       mode: "payment",
       ui_mode: "embedded",
-      client_reference_id: "123",
+      client_reference_id: client_reference_id,
       return_url:
         "http://localhost:5173/order-confirmation?session_id={CHECKOUT_SESSION_ID}",
     });

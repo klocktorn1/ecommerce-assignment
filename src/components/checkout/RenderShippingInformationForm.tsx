@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { IUpdateAndCreateCustomer } from "../../models/ICustomer";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCustomers } from "../../hooks/useCustomers";
 import { CartContext } from "../../contexts/CartContext";
 import { ICreateOrder } from "../../models/IOrder";
@@ -20,12 +20,23 @@ export const RenderShippingInformationForm = () => {
   const { cart } = useContext(CartContext);
 
   const [createdOrder, setCreatedOrder] = useState<ICreateOrder>();
+  const [orderId, setOrderId] = useState<number>();
 
   useEffect(() => {
-    if (createdOrder) {
-      createOrderHandler(createdOrder);
-    }
+    const getOrderId = async () => {
+      if (createdOrder) {
+        const response = await createOrderHandler(createdOrder);
+        setOrderId(response.id);
+      }
+    };
+    getOrderId();
   }, [createdOrder]);
+
+  useEffect(() => {
+    if (orderId) {
+      navigate(`/payment/${orderId}`);
+    }
+  }, [orderId]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,8 +56,7 @@ export const RenderShippingInformationForm = () => {
 
     if (createdCustomer) {
       const customerId = await createCustomerHandler(createdCustomer);
-      
-      
+
       setCreatedOrder({
         customer_id: customerId,
         payment_status: "unpaid",
@@ -61,8 +71,6 @@ export const RenderShippingInformationForm = () => {
           };
         }),
       });
-
-      navigate("/payment");
     }
   };
 

@@ -8,11 +8,12 @@ export interface IOrdersAction {
 
 export enum IOrdersActionType {
   FETCHED,
+  CREATED,
   UPDATED,
   DELETED,
   UPDATED_QUANTITY,
   DELETED_ORDER_ITEM,
-  CREATED
+  
 }
 
 export const OrdersReducer = (
