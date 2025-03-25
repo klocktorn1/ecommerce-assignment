@@ -10,7 +10,7 @@ import {
 
 import { ICustomer, IUpdateAndCreateCustomer } from "../models/ICustomer";
 import { ICustomersActionType } from "../reducers/CustomersReducer";
-import { CustomersContext } from "../contexts/CustomerContext";
+import { CustomersContext } from "../contexts/CustomersContext";
 
 export const useCustomers = () => {
   const { customers, customersDispatch } = useContext(CustomersContext);

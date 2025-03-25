@@ -54,6 +54,9 @@ export const CartReducer = (cartState: Cart[], action: ICartAction): Cart[] => {
       const cartStateRemoved = cartState.filter(
         (ci) => ci.product.id !== productId
       );
+      if (cartStateRemoved.length === 0) {
+        localStorage.removeItem("cart")
+      }
       console.log("Item removed:", cartStateRemoved);
       return [...cartStateRemoved]
     }

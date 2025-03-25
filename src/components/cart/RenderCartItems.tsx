@@ -2,11 +2,10 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { useCart } from "../../hooks/useCart";
 import { NavLink } from "react-router-dom";
-import { ICartActionType } from "../../reducers/CartReducer";
 
 export const RenderCartItems = () => {
-  const { cart, cartDispatch } = useContext(CartContext);
-  const { increaseHandler, decreaseHandler, removeHandler } = useCart();
+  const { cart } = useContext(CartContext);
+  const { increaseHandler, decreaseHandler, removeHandler, emptyHandler} = useCart();
 
   return (
     <>
@@ -46,10 +45,7 @@ export const RenderCartItems = () => {
         </NavLink>
       </li>
       <button onClick={() => {
-        cartDispatch({
-          type: ICartActionType.EMPTIED,
-          payload: ""
-        })
+        emptyHandler()
       }}>Empty cart</button>
     </>
   );

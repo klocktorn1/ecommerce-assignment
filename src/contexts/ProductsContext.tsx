@@ -1,4 +1,4 @@
-import { createContext, Dispatch, PropsWithChildren, useReducer } from "react";
+import { createContext, Dispatch, PropsWithChildren, useEffect, useReducer } from "react";
 import { IProduct } from "../models/IProduct";
 import { IProductsAction, ProductsReducer } from "../reducers/ProductsReducer";
 
@@ -21,7 +21,9 @@ export const ProductsProvider = ({children}: PropsWithChildren) => {
     return cachedProducts ? JSON.parse(cachedProducts) : [];
   });
 
+ useEffect(() => {
   localStorage.setItem("products", JSON.stringify(products));
+ }, [products])
   return (
     <ProductsContext.Provider value={{ products, productsDispatch }}>
       {children} 

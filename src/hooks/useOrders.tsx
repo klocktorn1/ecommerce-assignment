@@ -31,7 +31,6 @@ export const useOrders = () => {
     setIsLoading(true);
     try {
       const data = await getAllOrders();
-      localStorage.setItem("orders", JSON.stringify(data));
       ordersDispatch({
         type: IOrdersActionType.FETCHED,
         payload: JSON.stringify(data),

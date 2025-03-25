@@ -4,14 +4,16 @@ import { handleRequest } from "../../services/baseService";
 import { useEffect, useState } from "react";
 import { IOrderById } from "../../models/IOrder";
 import { formatDate } from "../../utils/dateUtils";
+import { useCart } from "../../hooks/useCart";
 
 export const OrderConfirmation = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [order, setOrder] = useState<IOrderById>();
+  const { emptyHandler } = useCart();
 
   useEffect(() => {
-    localStorage.removeItem("cart");
+    emptyHandler();
   }, []);
 
   useEffect(() => {

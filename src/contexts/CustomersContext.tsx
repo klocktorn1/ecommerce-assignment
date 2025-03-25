@@ -18,7 +18,7 @@ export const CustomersContext = createContext<ICustomersContext>({
   },
 });
 
-export const CustomerProvider = ({ children }: PropsWithChildren) => {
+export const CustomersProvider = ({ children }: PropsWithChildren) => {
   const [customers, customersDispatch] = useReducer(CustomersReducer, []);
 
   return (

@@ -3,21 +3,21 @@ import "./App.css";
 import { router } from "./Router";
 import { CartProvider } from "./contexts/CartContext";
 import { ProductsProvider } from "./contexts/ProductsContext";
-import { CustomerProvider } from "./contexts/CustomerContext";
-import { OrderProvider } from "./contexts/OrdersContext";
+import { CustomersProvider } from "./contexts/CustomersContext";
+import { OrdersProvider } from "./contexts/OrdersContext";
 
 function App() {
   return (
     <>
-      <OrderProvider>
-        <CustomerProvider>
+      <OrdersProvider>
+        <CustomersProvider>
           <ProductsProvider>
             <CartProvider>
               <RouterProvider router={router}></RouterProvider>
             </CartProvider>
           </ProductsProvider>
-        </CustomerProvider>
-      </OrderProvider>
+        </CustomersProvider>
+      </OrdersProvider>
     </>
   );
 }

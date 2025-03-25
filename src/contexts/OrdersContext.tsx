@@ -15,7 +15,7 @@ export const OrdersContext = createContext<IOrdersContext>({
 });
 
 
-export const OrderProvider = ({children}: PropsWithChildren) => {
+export const OrdersProvider = ({children}: PropsWithChildren) => {
   const [orders, ordersDispatch] = useReducer(OrdersReducer, []);
 
   return (

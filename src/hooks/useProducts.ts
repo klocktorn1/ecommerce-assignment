@@ -18,6 +18,9 @@ export const useProducts = () => {
 
 
   useEffect(() => {
+    setTimeout(() => {
+      localStorage.removeItem("products");
+    }, 1000 * 60 * 10);
     if (products.length > 0) return;
     getProductsHandler();
   }, []);
@@ -26,7 +29,6 @@ export const useProducts = () => {
     setIsLoading(true);
     try {
       const data = await getAllProducts();
-      localStorage.setItem("products", JSON.stringify(data));
       productsDispatch({
         type: IProductsActionType.FETCHED,
         payload: JSON.stringify(data),

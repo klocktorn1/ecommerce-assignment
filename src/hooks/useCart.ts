@@ -37,6 +37,13 @@ export const useCart = () => {
       payload: JSON.stringify(id),
     });    
   };
+  const emptyHandler = () => {
+    localStorage.removeItem("cart")
+    cartDispatch({
+      type: ICartActionType.EMPTIED,
+      payload: "",
+    });    
+  };
 
   return {
     cart,
@@ -44,5 +51,6 @@ export const useCart = () => {
     increaseHandler,
     decreaseHandler,
     removeHandler,
+    emptyHandler
   };
 };
