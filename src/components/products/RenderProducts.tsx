@@ -8,8 +8,13 @@ interface IRenderProductsProps {
 }
 
 export const RenderProducts = ({ isAdmin }: IRenderProductsProps) => {
+
   const { isLoading, error, products, deleteProductHandler } = useProducts();
   const { addToCartHandler } = useCart();
+
+  // useEffect(() => {
+  //   getProductsHandler();
+  // }, []);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;

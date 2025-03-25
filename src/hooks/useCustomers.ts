@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
   createCustomer,
   deleteCustomer,
@@ -18,13 +18,6 @@ export const useCustomers = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  useEffect(() => {
-    // setTimeout(() => {
-    //   localStorage.removeItem("customers");
-    // }, 1000 * 60 * 60);
-    if (customers.length > 0) return;
-    getCustomersHandler();
-  }, []);
 
   const getCustomersHandler = async () => {
     setIsLoading(true);

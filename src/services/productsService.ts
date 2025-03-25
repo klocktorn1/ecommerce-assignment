@@ -3,7 +3,7 @@ import { handleRequest } from "./baseService";
 import { IProduct, IUpdateAndCreateProduct } from "../models/IProduct";
 
 export const getAllProducts = async () => {
-  const data: IProduct[] = await handleRequest(axios.get("http://localhost:3000/products"));
+  const data: IProduct[] = await handleRequest(axios.get("http://localhost:3000/products"));  
   return data
 };
 

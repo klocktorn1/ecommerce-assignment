@@ -18,9 +18,6 @@ export const useProducts = () => {
 
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   localStorage.removeItem("products");
-    // }, 1000 * 60 * 60);
     if (products.length > 0) return;
     getProductsHandler();
   }, []);
