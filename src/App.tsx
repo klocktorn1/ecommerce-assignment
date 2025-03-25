@@ -2,8 +2,7 @@ import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import { router } from "./Router";
 import { useEffect, useReducer } from "react";
-import { CartContext } from "./contexts/CartContext";
-import { CartReducer } from "./reducers/CartReducer";
+import { CartProvider } from "./contexts/CartContext";
 import {
   IProductsActionType,
   ProductsReducer,
@@ -20,10 +19,12 @@ import { OrdersContext } from "./contexts/OrdersContext";
 import { OrdersReducer } from "./reducers/OrdersReducer";
 
 function App() {
-  const [cart, cartDispatch] = useReducer(CartReducer, [], () => {
-    const cachedCart = localStorage.getItem("cart");
-    return cachedCart ? JSON.parse(cachedCart) : [];
-  });
+
+
+  // const [cart, cartDispatch] = useReducer(CartReducer, [], () => {
+  //   const cachedCart = localStorage.getItem("cart");
+  //   return cachedCart ? JSON.parse(cachedCart) : [];
+  // });
 
   // try to figure out the flow of when stuff gets added to localstorage. 
 
@@ -38,6 +39,7 @@ function App() {
 
   const [orders, ordersDispatch] = useReducer(OrdersReducer, []);
 
+    // FETCHING ALL PRODUCTS, DO I NEED IT HERE?
   useEffect(() => {
     const fetchAllProducts = async () => {
       const data = await getAllProducts();
@@ -50,6 +52,10 @@ function App() {
     fetchAllProducts();
   }, []);
 
+
+
+
+  // FETCHING ALL CUSTOMERS, DO I NEED IT HERE?
   useEffect(() => {
     const fetchAllCustomers = async () => {
       const data = await getAllCustomers();
@@ -67,9 +73,9 @@ function App() {
       <OrdersContext.Provider value={{ orders, ordersDispatch }}>
         <CustomersContext.Provider value={{ customers, customersDispatch }}>
           <ProductsContext.Provider value={{ products, productsDispatch }}>
-            <CartContext.Provider value={{ cart, cartDispatch }}>
+            <CartProvider>
               <RouterProvider router={router}></RouterProvider>
-            </CartContext.Provider>
+            </CartProvider>
           </ProductsContext.Provider>
         </CustomersContext.Provider>
       </OrdersContext.Provider>

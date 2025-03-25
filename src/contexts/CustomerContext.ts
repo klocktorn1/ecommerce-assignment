@@ -1,4 +1,4 @@
-import { createContext, Dispatch } from "react";
+import { createContext, Dispatch, useReducer } from "react";
 
 import { ICustomer } from "../models/ICustomer";
 import { ICustomersAction } from "../reducers/CustomersReducer";
@@ -14,3 +14,17 @@ export const CustomersContext = createContext<ICustomersContext>({
     return;
   },
 });
+
+
+export const CustomerProvider = ({children}: PropsWithChildren) => {
+  const [customers, customersDispatch] = useReducer(CustomerReducer, [], () => {
+    const cachedCart = localStorage.getItem("cart");
+    return cachedCart ? JSON.parse(cachedCart) : [];
+  });
+
+  return (
+    <CartContext.Provider value={{ cart, cartDispatch }}>
+      {children} 
+    </CartContext.Provider>
+  )
+}

@@ -54,12 +54,13 @@ export const CartReducer = (cartState: Cart[], action: ICartAction): Cart[] => {
       const cartStateRemoved = cartState.filter(
         (ci) => ci.product.id !== productId
       );
-      console.log(cartStateRemoved);
-
-      return (cartState = cartStateRemoved);
+      console.log("Item removed:", cartStateRemoved);
+      return [...cartStateRemoved]
     }
     case ICartActionType.EMPTIED: {
-      return (cartState = []);
+      return [];
     }
+    default:
+      return cartState; 
   }
 };
