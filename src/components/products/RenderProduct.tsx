@@ -25,7 +25,7 @@ export const RenderProduct = ({ id }: IRenderProductProps) => {
 
   return (
     <>
-      <div className="bg-black">
+      <div className="h-125 bg-gradient-to-b from-white via-white to-black">
         <h2>{product?.name}</h2>
         <img className="size-50" src={product?.image} alt="" />
         <p>${product?.price}</p>

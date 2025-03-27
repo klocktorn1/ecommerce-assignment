@@ -1,9 +1,10 @@
+import { RenderHomePage } from "../../components/general-components/RenderHomePage"
 
 
 export const Home = () => {
     return (
         <>
-            <div>Homeasdasd</div>
+            <RenderHomePage></RenderHomePage>
         </>
     )
 }

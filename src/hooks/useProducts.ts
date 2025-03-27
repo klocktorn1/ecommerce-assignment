@@ -16,7 +16,6 @@ export const useProducts = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-
   useEffect(() => {
     setTimeout(() => {
       localStorage.removeItem("products");
@@ -29,6 +28,7 @@ export const useProducts = () => {
     setIsLoading(true);
     try {
       const data = await getAllProducts();
+
       productsDispatch({
         type: IProductsActionType.FETCHED,
         payload: JSON.stringify(data),

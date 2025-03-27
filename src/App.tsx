@@ -6,7 +6,9 @@ import { ProductsProvider } from "./contexts/ProductsContext";
 import { CustomersProvider } from "./contexts/CustomersContext";
 import { OrdersProvider } from "./contexts/OrdersContext";
 
+
 function App() {
+
   return (
     <>
       <OrdersProvider>

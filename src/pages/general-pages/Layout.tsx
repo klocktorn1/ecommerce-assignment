@@ -1,6 +1,9 @@
-import {  useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { RenderFooterInfo } from "../../components/general-components/RenderFooterInfo";
 
 export const Layout = () => {
   const { cart } = useContext(CartContext);
@@ -13,32 +16,41 @@ export const Layout = () => {
     initialValue
   );
 
+  const onHover =
+    "hover:text-[#ffffff] hover:scale-120 duration-200 ease-in-out";
+
   return (
     <>
-      <div className="flex flex-col min-h-screen ">
-        <header className="bg-gray-600 h-25 flex">
-          <nav className=" h-full flex items-center w-full pl-5 pr-5 justify-end">
-            <ul className="flex gap-2">
-              <li>
-                <NavLink to={"/"}>Home</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/products"}>Products</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/admin-login"}>Admin-Login</NavLink>
-              </li>
-              <li>
-                <NavLink to={"/cart"}>Cart {totalAmountInCart}</NavLink>
-              </li>
-            </ul>
+      <div className="flex flex-col min-h-screen">
+        <header className="bg-black h-25 flex">
+          <nav className=" h-full flex items-center font-hanken w-full pl-5 pr-5 justify-between font-normal text-xl text-[#b3b3b3] ">
+            <Link className={onHover} to={"/"}>
+              stringify music
+            </Link>
+            <div className="mr-4 flex gap-4 list-none">
+              <NavLink className={onHover} to={"/"}>
+                Home
+              </NavLink>
+
+              <NavLink className={onHover} to={"/products"}>
+                Products
+              </NavLink>
+
+              <NavLink className={onHover} to={"/admin-login"}>
+                Admin-Login
+              </NavLink>
+
+              <NavLink className={onHover} to={"/cart"}>
+                <FontAwesomeIcon icon={faCartShopping} /> {totalAmountInCart}
+              </NavLink>
+            </div>
           </nav>
         </header>
-        <main className="flex-grow">
+        <main className="flex-grow bg-white">
           <Outlet></Outlet>
         </main>
-        <footer className="bg-blue-950 h-30">
-          <div>Footer</div>
+        <footer className="bg-black h-30">
+          <RenderFooterInfo></RenderFooterInfo>
         </footer>
       </div>
     </>
