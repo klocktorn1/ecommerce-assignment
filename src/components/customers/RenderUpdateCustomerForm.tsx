@@ -57,7 +57,7 @@ export const RenderUpdateCustomerForm = ({
   return (
     <>
       <div className="flex justify-center">
-        <form action="" className="flex flex-col gap-5">
+        <form action="" className="flex flex-col gap-5 text-white">
           <label>
             First name:{" "}
             <input
@@ -92,17 +92,7 @@ export const RenderUpdateCustomerForm = ({
               }}
             />
           </label>
-          <label>
-            Password:{" "}
-            <input
-              name="password"
-              defaultValue={customer?.password}
-              type="number"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-          </label>
+
           <label>
             Phone:{" "}
             <input
@@ -159,6 +149,7 @@ export const RenderUpdateCustomerForm = ({
             />
           </label>
           <button
+          className="text-white hover:cursor-pointer"
             onClick={(e) => {
               handleSubmit(e);
             }}

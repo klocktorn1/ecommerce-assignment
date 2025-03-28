@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOrders } from "../../hooks/useOrders";
 import { IUpdateOrderItemQuantity } from "../../models/IOrder";
+import { Minus, Plus } from "lucide-react";
 
 interface IRenderOrderDetailsProps {
   id: string;
@@ -31,7 +32,7 @@ export const RenderOrderDetails = ({ id }: IRenderOrderDetailsProps) => {
   if (!order) return <p>Loading...</p>;
 
   return (
-    <table className="border-collapse border border-gray-400 w-full">
+    <table className="border-collapse border border-gray-400 w-full text-white">
       <tbody>
         <tr>
           <td className="border border-gray-300 p-2">Order ID</td>
@@ -92,29 +93,34 @@ export const RenderOrderDetails = ({ id }: IRenderOrderDetailsProps) => {
                 <li key={index}>
                   {item.id} {item.product_name} - {item.quantity} x $
                   {item.unit_price}
-                  <button
-                    onClick={() => {
-                      setUpdateCount(updateCount + 1);
-                      deleteOrderItemHandler(item.id, id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() =>
-                      handleQuantityChange(item.id, item.quantity + 1)
-                    }
-                  >
-                    +
-                  </button>
-                  <button
-                    disabled={item.quantity === 1}
-                    onClick={() =>
-                      handleQuantityChange(item.id, item.quantity - 1)
-                    }
-                  >
-                    -
-                  </button>
+                  <div className="flex gap-4">
+                    <button
+                    className="text-white hover:cursor-pointer hover:scale-120 bg-blue-600 duration-200 ease-in-out"
+                      onClick={() => {
+                        setUpdateCount(updateCount + 1);
+                        deleteOrderItemHandler(item.id, id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="text-white hover:cursor-pointer hover:scale-120 duration-200 ease-in-out"
+                      onClick={() =>
+                        handleQuantityChange(item.id, item.quantity + 1)
+                      }
+                    >
+                      <Plus></Plus>
+                    </button>
+                    <button
+                      className="text-white hover:cursor-pointer hover:scale-120 duration-200 ease-in-out"
+                      disabled={item.quantity === 1}
+                      onClick={() =>
+                        handleQuantityChange(item.id, item.quantity - 1)
+                      }
+                    >
+                      <Minus></Minus>
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>

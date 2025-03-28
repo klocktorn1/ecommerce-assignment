@@ -27,7 +27,7 @@ export const RenderOrders = () => {
 
   return (
     <>
-      <table className="border-collapse border border-gray-400 w-full">
+      <table className="border-collapse border border-gray-400 w-full text-white">
         <thead>
           <tr>
             <th className="border border-gray-300 p-2">Order ID</th>
@@ -83,6 +83,7 @@ export const RenderOrders = () => {
               </td>
               <td className="border border-gray-300 p-2">
                 <button
+                  className="text-white hover:cursor-pointer bg-blue-600 hover:scale-120 duration-200 ease-in-out"
                   onClick={() => {
                     removeOrderHandler(o.id);
                   }}
@@ -90,7 +91,9 @@ export const RenderOrders = () => {
                   Delete
                 </button>
                 <Link to={`/admin/order-details/${o.id}`}>
-                  <button>Order details</button>
+                  <button className="text-white hover:cursor-pointer bg-blue-600 hover:scale-120 duration-200 ease-in-out">
+                    Order details
+                  </button>
                 </Link>
               </td>
             </tr>

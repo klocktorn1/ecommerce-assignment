@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { RenderProducts } from "../../components/products/RenderProducts";
+import { RenderHandleProducts } from "../../components/products/RenderHandleProducts";
 
 export const HandleProducts = () => {
   return (
     <>
-      <NavLink to={"/admin/create-product"}>Create Product</NavLink>
-      <RenderProducts isAdmin={true}></RenderProducts>
+      <NavLink to={"/admin/create-product"} className="text-white">Create Product</NavLink>
+      <RenderHandleProducts></RenderHandleProducts>
     </>
   );
 };

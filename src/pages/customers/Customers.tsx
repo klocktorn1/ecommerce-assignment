@@ -7,7 +7,7 @@ export const HandleCustomers = () => {
 
   return (
     <>
-      <NavLink to={"/admin/create-customer"}>Create customer</NavLink>
+      <NavLink to={"/admin/create-customer"} className="text-white">Create customer</NavLink>
       <RenderCustomers></RenderCustomers>
     </>
   );

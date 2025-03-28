@@ -4,6 +4,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { RenderFooterInfo } from "../../components/general-components/RenderFooterInfo";
+import { HamburgerMenu } from "../../components/hamburger-menu/HamburgerMenu";
 
 export const Layout = () => {
   const { cart } = useContext(CartContext);
@@ -22,34 +23,35 @@ export const Layout = () => {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <header className="bg-black h-25 flex">
-          <nav className=" h-full flex items-center font-hanken w-full pl-5 pr-5 justify-between font-normal text-xl text-[#b3b3b3] ">
+        <header className="bg-[#1b1b1b] h-25 flex">
+          <nav className=" h-full flex items-center w-full pl-5 pr-5 justify-between font-normal text-xl text-[#b3b3b3] ">
             <Link className={onHover} to={"/"}>
               stringify music
             </Link>
-            <div className="mr-4 flex gap-4 list-none">
-              <NavLink className={onHover} to={"/"}>
+            <div className="flex gap-4 items-center ">
+              <NavLink className={`${onHover} hidden md:block`} to={"/"}>
                 Home
               </NavLink>
 
-              <NavLink className={onHover} to={"/products"}>
+              <NavLink className={`${onHover} hidden md:block`} to={"/products"}>
                 Products
               </NavLink>
 
-              <NavLink className={onHover} to={"/admin-login"}>
+              <NavLink className={`${onHover} hidden md:block`} to={"/admin-login"}>
                 Admin-Login
               </NavLink>
 
               <NavLink className={onHover} to={"/cart"}>
                 <FontAwesomeIcon icon={faCartShopping} /> {totalAmountInCart}
               </NavLink>
+              <HamburgerMenu></HamburgerMenu>
             </div>
           </nav>
         </header>
         <main className="flex-grow bg-white">
           <Outlet></Outlet>
         </main>
-        <footer className="bg-black h-30">
+        <footer className="bg-[#1b1b1b] h-30">
           <RenderFooterInfo></RenderFooterInfo>
         </footer>
       </div>

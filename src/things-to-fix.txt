@@ -22,3 +22,14 @@ background is only as big as default screen height.
 axios request for stripe api
 
 remove created from ordersReducer
+
+
+proceed to payment 
+
+order confirmed
+
+
+
+button component
+
+

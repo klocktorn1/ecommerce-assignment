@@ -10,9 +10,11 @@ export const RenderCustomers = () => {
     getCustomersHandler();
   }, []);
 
+  const onHover = "hover:scale-120 duration-200 ease-in-out cursor-pointer bg-blue-800 rounded-md";
+
   return (
     <>
-      <table className="border-2">
+      <table className="border-2 text-white">
         <thead>
           <tr>
             <th>ID:</th>
@@ -38,16 +40,19 @@ export const RenderCustomers = () => {
               <td>{c.phone}</td>
               <td>{c.created_at}</td>
               <td className="m-0.5">
-                <button
-                  onClick={() => {
-                    deleteCustomerHandler(c.id);
-                  }}
-                >
-                  Delete
-                </button>
-                <Link to={`/admin/update-customer/${c.id}`}>
-                  <button>Update</button>
-                </Link>
+                <div className="flex gap-3">
+                  <button
+                    className={onHover}
+                    onClick={() => {
+                      deleteCustomerHandler(c.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <Link to={`/admin/update-customer/${c.id}`}>
+                    <button className={onHover}>Update</button>
+                  </Link>
+                </div>
               </td>
             </tr>
           </tbody>
