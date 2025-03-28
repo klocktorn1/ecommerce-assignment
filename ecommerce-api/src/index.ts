@@ -64,7 +64,7 @@ app.post(
 
 // Match the raw body to content type application/json
 // If you are using Express v4 - v4.16 you need to use body-parser, not express, to retrieve the request body
-app.post("/webhook", async (req: Request, res: Response) => {
+app.post("/stripe/webhook", async (req: Request, res: Response) => {
   const event = req.body;
   const session = event.data.object;
   // Handle the event

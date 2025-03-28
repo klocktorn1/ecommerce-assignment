@@ -7,7 +7,7 @@ export const Product = () => {
     
     return(
         <>
-            {id && <RenderProduct id={id}></RenderProduct>}
+            <div className="flex justify-center ">{id && <RenderProduct id={id}></RenderProduct>}</div>
 
         </>
     )
