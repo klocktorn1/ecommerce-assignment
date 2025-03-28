@@ -87,7 +87,7 @@ export const RenderUpdateProductForm = ({ id, product }: IRenderUpdateProductFor
               handleChange(e);
             }}
           />
-          <button
+          <button className="text-white hover:cursor-pointer hover:scale-120 bg-blue-600"
             onClick={(e) => {
               handleSubmit(e);
             }}

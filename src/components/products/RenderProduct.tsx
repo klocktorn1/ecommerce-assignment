@@ -4,7 +4,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { ICartActionType } from "../../reducers/CartReducer";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ArrowRight, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 interface IRenderProductProps {
   id: string;
@@ -29,19 +29,19 @@ export const RenderProduct = ({ id }: IRenderProductProps) => {
     return (
       <>
         <div className=" h-full m-1">
-          <div className="flex md:flex-row flex-col">
+          <div className="flex md:items-center flex-col">
             <div className="md:w-1/2 ">
               <h1 className="text-2xl font-bebas mt-2 mb-2">{product.name}</h1>
               <hr className="text-[#e1e1e1]" />
               <img
-                className="size-50 md:m-auto md:mt-6"
+                className="size-80 md:m-auto md:mt-6"
                 src={product.image}
                 alt=""
               />
             </div>
             <div className="flex flex-col gap-1 md:w-1/2">
               <div className="flex items-center justify-center gap-5 mt-3">
-                <p className="font-semibold text-2xl">${product.price}</p>
+                <p className="font-semibold text-2xl">{product.price} SEK</p>
                 <button
                   disabled={product.stock < 1}
                   className="relative duration-500 ease-in-out bg-[#476d45] shadow-sm shadow-[#939393] cursor-pointer p-2 rounded-b-sm group flex items-center gap-3"

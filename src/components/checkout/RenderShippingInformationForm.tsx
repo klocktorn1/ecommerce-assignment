@@ -66,25 +66,25 @@ export const RenderShippingInformationForm = () => {
 
   return (
     <>
-      <div className="flex justify-center ">
-        <form action="" className="flex flex-col gap-5">
+      <div className="flex justify-center">
+        <form action="" className="flex flex-col gap-5 ">
           <input
             name="firstname"
-            placeholder="firstname"
+            placeholder="First Name"
             defaultValue={createdCustomer?.firstname}
             type="text"
             onChange={handleChange}
           />
           <input
             name="lastname"
-            placeholder="lastname"
+            placeholder="Last Name"
             defaultValue={createdCustomer?.lastname}
             type="text"
             onChange={handleChange}
           />
           <input
             name="email"
-            placeholder="email"
+            placeholder="Email"
             defaultValue={createdCustomer?.email}
             type="text"
             onChange={handleChange}
@@ -92,40 +92,40 @@ export const RenderShippingInformationForm = () => {
 
           <input
             name="phone"
-            placeholder="phone"
+            placeholder="Phone"
             defaultValue={createdCustomer?.phone}
             type="number"
             onChange={handleChange}
           />
           <input
             name="street_address"
-            placeholder="street_address"
+            placeholder="Street Address"
             defaultValue={createdCustomer?.street_address}
             type="text"
             onChange={handleChange}
           />
           <input
             name="postal_code"
-            placeholder="postal_code"
+            placeholder="Postal Code"
             defaultValue={createdCustomer?.postal_code}
             type="text"
             onChange={handleChange}
           />
           <input
             name="city"
-            placeholder="city"
+            placeholder="City"
             defaultValue={createdCustomer?.city}
             type="text"
             onChange={handleChange}
           />
           <input
             name="country"
-            placeholder="country"
+            placeholder="Country"
             defaultValue={createdCustomer?.country}
             type="text"
             onChange={handleChange}
           />
-          <button onClick={handleSubmit}>Proceed to payment</button>
+          <button className="rounded-sm hover:scale-120 duration-200 ease-in-out cursor-pointer bg-[#476d45] shadow-sm shadow-[#939393] mb-5" onClick={handleSubmit}>Proceed to payment</button>
         </form>
       </div>
     </>

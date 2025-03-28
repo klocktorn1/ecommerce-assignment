@@ -85,7 +85,7 @@ export const RenderCreateProductForm = () => {
             type="text"
             onChange={handleChange}
           />
-          <button className="text-white hover:cursor-pointer" onClick={handleSubmit}>Submit</button>
+          <button className="text-white hover:cursor-pointer hover:scale-120 bg-blue-600" onClick={handleSubmit}>Submit</button>
         </form>
       
     </>

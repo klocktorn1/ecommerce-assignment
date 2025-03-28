@@ -58,8 +58,9 @@ function Payment() {
             currency: "sek",
             product_data: {
               name: ci.product.name,
+              images: [ci.product.image]
             },
-            unit_amount: ci.product.price,
+            unit_amount: ci.product.price * 100,
           },
           quantity: ci.amount,
         })),

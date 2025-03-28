@@ -13,9 +13,9 @@ export const RenderMenuOptions = (props: IRenderMenuOptionsProps) => {
   };
 
   const menuItems = [
-    { to: "/", label: "Home"  },
-    { to: "/products", label: "Products" },
-    { to: "/admin-login", label: "Login" },
+    { to: "/", label: "HOME"  },
+    { to: "/products", label: "PRODUCTS" },
+    { to: "/admin-login", label: "LOGIN" },
   ];
 
 
@@ -26,9 +26,9 @@ export const RenderMenuOptions = (props: IRenderMenuOptionsProps) => {
         className={`fixed top-0 right-0 w-full h-full bg-purple bg-[#1b1b1b] text-white duration-300 ease-in opacity-98 z-20 
           ${props.isMenuPressed ? "-translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex">
+        <div className="flex m-10">
           <NavLink to={"/"} onClick={handleLinkClick}>
-            <div>logo</div>
+            <div>stringify music</div>
           </NavLink>
         </div>
 

@@ -4,15 +4,13 @@ import { RenderShippingInformationForm } from "../../components/checkout/RenderS
 export const Checkout = () => {
   return (
     <>
-      <div className="flex gap-5 justify-around">
-        <div>
-          <h1>Checkout</h1>
-          <RenderShippingInformationForm></RenderShippingInformationForm>
+      <div className="flex flex-col gap-5 md:flex-row md:justify-around ">
+        <div className="md:w-1/2">
+          <RenderCartItems isOnCheckoutPage={true}></RenderCartItems>
         </div>
-  
-        <div>
-          <h1>Your cart:</h1>
-          <RenderCartItems></RenderCartItems>
+        <div className="flex flex-col items-center gap-4 mt-3 self-center w-1/2 shadow-md shadow-[#939393] mb-5">
+        <h2 className="font-bebas text-lg">Shipping information</h2>
+          <RenderShippingInformationForm></RenderShippingInformationForm>
         </div>
       </div>
     </>

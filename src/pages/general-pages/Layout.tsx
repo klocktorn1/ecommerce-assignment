@@ -24,21 +24,21 @@ export const Layout = () => {
     <>
       <div className="flex flex-col min-h-screen">
         <header className="bg-[#1b1b1b] h-25 flex">
-          <nav className=" h-full flex items-center w-full pl-5 pr-5 justify-between font-normal text-xl text-[#b3b3b3] ">
+          <nav className=" h-full flex items-center w-full pl-5 pr-5 justify-between font-kanit text-xl text-[#b3b3b3] ">
             <Link className={onHover} to={"/"}>
               stringify music
             </Link>
             <div className="flex gap-4 items-center ">
               <NavLink className={`${onHover} hidden md:block`} to={"/"}>
-                Home
+                HOME
               </NavLink>
 
               <NavLink className={`${onHover} hidden md:block`} to={"/products"}>
-                Products
+                PRODUCTS
               </NavLink>
 
               <NavLink className={`${onHover} hidden md:block`} to={"/admin-login"}>
-                Admin-Login
+                LOGIN
               </NavLink>
 
               <NavLink className={onHover} to={"/cart"}>
